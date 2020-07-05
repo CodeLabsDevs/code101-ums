@@ -43,9 +43,9 @@ class UserController extends Controller
         ]);
 
         $user = new User([
-            'name' => $request->get('first_name'),
-            'email' => $request->get('last_name'),
-            'password' => $request->get('email')
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => $request->get('password')
         ]);
         $user->save();
     }
@@ -99,6 +99,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        
+
     }
 }
