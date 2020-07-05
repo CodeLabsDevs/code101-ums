@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/users', 'UserController@index')->name('users.index');
+Route::get('/users/{id}/edit','UserController@edit')->name('users.edit');
+Route::get('/users/{id}/delete', 'UserController@delete')->name('users.delete');
