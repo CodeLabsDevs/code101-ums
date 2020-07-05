@@ -19,5 +19,6 @@ Route::get('/', function () {
 
 Route::get('/users', 'UserController@index')->name('users.index');
 Route::get('/create', 'UserController@store')->name('users.store');
+Route::get('/users/{id}', 'UserController@show')->name('users.show');
 Route::get('/users/{id}/edit','UserController@edit')->name('users.edit');
-Route::get('/users/{id}/delete', 'UserController@delete')->name('users.delete');
+Route::get('/users/{id}/delete', 'UserController@destroy')->name('users.destroy');
