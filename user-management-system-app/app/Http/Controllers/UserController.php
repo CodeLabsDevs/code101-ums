@@ -48,7 +48,13 @@ class UserController extends Controller
             'email' => $request->get('email'),
             'password' => $request->get('password')
         ]);
-        $user->save();
+
+        $is_saved = $user->save();
+        if(!$is_saved){
+            return response()->json(['created' => 'false'], 400);
+        }
+
+        return response()->json(['created' => 'true'], 200);
     }
 
     /**
