@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Response;
 use App\User;
+use App\Http\RestfullResponse\ApiController;
+use Illuminate\Http\Response as IlluminateResponse;
 
 class UserController extends Controller
 {
+    private $apiController;
+
+    public function __construct(ApiController $apiController)
+    {
+        $this->apiController = $apiController;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,17 +25,7 @@ class UserController extends Controller
     {
 
         $user = User::all();
-        return response()->json($user);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->apiController->requestSuccesfull($user);
     }
 
     /**
@@ -37,24 +36,36 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
 
-        $user = new User([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => $request->get('password')
-        ]);
+        try{
+            if(empty($request)){
+                return $this->apiController->badRequest();
+            }
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required'
+            ]);
+    
+            $user = new User([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => $request->get('password')
+            ]);
 
-        $is_saved = $user->save();
-        if(!$is_saved){
-            return response()->json(['created' => 'false'], 400);
+            $is_saved = $user->save();
+            
+            if(!$is_saved){
+                return $this->apiController->badRequest();
+            }
+
+
+        }catch(\Exception $e){
+            return $this->apiController->badRequest($e->getMessage());
         }
 
-        return response()->json(['created' => 'true'], 200);
+        return $this->apiController->requestSuccesfull();
+        //response()->json(['created' => 'true'], 201);
     }
 
     /**
@@ -66,20 +77,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return response()->json($user);
+        if(!$user) return $this->apiController->badRequest();
+        return $this->apiController->requestSuccesfull($user);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user = User::find($id);
-        // TO DO
-    }
 
     /**
      * Update the specified resource in storage.
@@ -91,10 +92,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        if($user) return $this->apiController->badRequest();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = $request->input('password');
-        $user->save();
+        $is_saved = $user->save();
+        if(!$is_saved) return $this->apiController->badRequest();
+        return $this->apiController->requestSuccessfull($user);
     }
 
     /**
@@ -106,7 +110,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        if(!$user) return $this->apiController->badRequest();
         $user->delete();
+        return $this->apiController->requestSuccesfull();
 
     }
 }

@@ -17,11 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/user', 'UserController');
 
-
-// Route::get('/users', 'UserController@index')->name('users.index');
-// Route::post('/create', 'UserController@store')->name('users.store');
-// Route::get('/users/{id}', 'UserController@show')->name('users.show');
-// Route::put('/users/{id}/edit','UserController@edit')->name('users.edit');
-// Route::delete('/users/{id}/delete', 'UserController@destroy')->name('users.destroy');

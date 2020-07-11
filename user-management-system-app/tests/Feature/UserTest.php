@@ -14,15 +14,16 @@ class UserTest extends TestCase
      * @return void
      */
 
-     // Sum_ThrowsException_WhenNegativeNumberAs1stParam
+     /** @test */
     public function registerNewUser_WhenUserObjectGiven_ShouldReturnTrue()
     {
-        $this->post('/create', ['name' => 'John', 'email'=> 'John@mail.com', 'password' => 'J1234'])->seeJsonEquals(['created' => 'true']);
+        $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234'])->assertJsonStructure(['created' => 'true']);
     }
 
+    /** @test */
     public function registerNewUser_WhenEmptyUserObjectGiven_ShouldReturnFalse()
     {
-        $this->post('/create', [])->seeJsonEquals(['created' => 'false']);
+        $this->post('/create', [])->assertJsonFragment(['created' => 'false']);
     }
 
 
