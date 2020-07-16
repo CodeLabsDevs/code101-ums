@@ -45,7 +45,27 @@ class UserTest extends TestCase
         $response = $this->getJson('/create');
         $response->assertJson(['created' => 'false']);
     }
+    
+    public function getAllUsers_ShouldReturnDataSet(){
+        
+            $response = $this->json('GET', '/api/users');
+            $response->assertStatus(200);
 
+            $response->assertJsonStructure(
+                [
+                    [
+                            'id',
+                            'name',
+                            'email',
+                            'password',
+                            'created_at',
+                            'updated_at',
+                            'deleted_at'
+                    ]
+                ]
+            );
+        }
+    }
 
 
 
