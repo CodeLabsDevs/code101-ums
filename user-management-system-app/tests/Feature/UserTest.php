@@ -14,18 +14,58 @@ class UserTest extends TestCase
      * @return void
      */
 
-     /** @test */
-    public function registerNewUser_WhenUserObjectGiven_ShouldReturnTrue()
+    public function registerNewUser_WhenUserObjectGiven_StatusShouldBeOK()
     {
-        $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234'])->assertJsonStructure(['created' => 'true']);
+        $response = $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
+        $response->assertkOk();
+
     }
 
     /** @test */
-    public function registerNewUser_WhenEmptyUserObjectGiven_ShouldReturnFalse()
+    public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBeBadRequest()
     {
-        $this->post('/create', [])->assertJsonFragment(['created' => 'false']);
+        $response = $this->post('/create', []);
+        $response->assertStatus(400);
+    }
+    
+    
+     /** @test */
+    public function registerNewUser_WhenUserObjectGiven_CreatedShouldReturnTrue()
+    {
+        $this->postJson('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
+        $response = $this>getJson('/create');
+        $response->assertJson(['created' => 'true']);
+
     }
 
+    /** @test */
+    public function registerNewUser_WhenEmptyUserObjectGiven_CreatedShouldReturnFalse()
+    {
+        $this->postJson('/create', []);
+        $response = $this->getJson('/create');
+        $response->assertJson(['created' => 'false']);
+    }
+    
+    public function getAllUsers_ShouldReturnDataSet(){
+        
+            $response = $this->json('GET', '/api/users');
+            $response->assertStatus(200);
+
+            $response->assertJsonStructure(
+                [
+                    [
+                            'id',
+                            'name',
+                            'email',
+                            'password',
+                            'created_at',
+                            'updated_at',
+                            'deleted_at'
+                    ]
+                ]
+            );
+        }
+    }
 
 
 
