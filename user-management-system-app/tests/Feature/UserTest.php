@@ -17,13 +17,16 @@ class UserTest extends TestCase
      /** @test */
     public function registerNewUser_WhenUserObjectGiven_ShouldReturnTrue()
     {
-        $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234'])->assertJsonStructure(['created' => 'true']);
+        $response = $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
+        $response->assertkOk();
+
     }
 
     /** @test */
     public function registerNewUser_WhenEmptyUserObjectGiven_ShouldReturnFalse()
     {
-        $this->post('/create', [])->assertJsonFragment(['created' => 'false']);
+        $response = $this->post('/create', []);
+        $response->assertStatus(400);
     }
 
 
