@@ -21,5 +21,11 @@ class ApiController extends Controller
         return Response::json($response);
     }
 
+    function getErrorMessages(\Illuminate\Contracts\Validation\Validator $validator){
+        $messages =  $validator->errors()->getMessages();
+        $replaced = str_replace(['[',']', '"', '.','id'], '', json_encode(array_values($messages)));
+        return explode(',',$replaced);
+    }
+
 
 }

@@ -25,15 +25,14 @@ class UserTest extends TestCase
     public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBeBadRequest()
     {
         $response = $this->post('/create', []);
-        $response->assertStatus(400);
+        $response->assertStatus(404);
     }
     
     
      /** @test */
     public function registerNewUser_WhenUserObjectGiven_CreatedShouldReturnTrue()
     {
-        $this->postJson('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
-        $response = $this>getJson('/create');
+        $response = $this->postJson('/create', ['name' => 'Ben', 'email' => 'Bob@mail.com', 'password' => 'J1234']);
         $response->assertJson(['created' => 'true']);
 
     }
@@ -69,4 +68,4 @@ class UserTest extends TestCase
 
 
 
-}
+
