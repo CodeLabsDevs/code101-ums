@@ -7,6 +7,7 @@ use Response;
 use App\User;
 use App\Http\RestfullResponse\ApiController;
 use Illuminate\Http\Response as IlluminateResponse;
+use App\Rules\CreateUserValidation;
 
 class UserController extends Controller
 {
@@ -34,38 +35,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserValidation $request)
     {
-
-        try{
-            if(empty($request)){
-                return $this->apiController->badRequest();
-            }
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required'
-            ]);
-    
-            $user = new User([
-                'name' => $request->get('name'),
-                'email' => $request->get('email'),
-                'password' => $request->get('password')
-            ]);
-
-            $is_saved = $user->save();
-            
-            if(!$is_saved){
-                return $this->apiController->badRequest();
-            }
-
-
-        }catch(\Exception $e){
-            return $this->apiController->badRequest($e->getMessage());
-        }
-
+        $user = User::create($request->toArray());
         return $this->apiController->requestSuccesfull();
-        //response()->json(['created' => 'true'], 201);
     }
 
     /**
@@ -74,11 +47,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
-        if(!$user) return $this->apiController->badRequest();
-        return $this->apiController->requestSuccesfull($user);
+        if($user) return $this->apiController->requestSuccesfull($user);
+        return $this->apiController->badRequest();
     }
 
 
