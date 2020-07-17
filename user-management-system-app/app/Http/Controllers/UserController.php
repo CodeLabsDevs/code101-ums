@@ -64,13 +64,11 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        if($user) return $this->apiController->badRequest();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-        $is_saved = $user->save();
-        if(!$is_saved) return $this->apiController->badRequest();
-        return $this->apiController->requestSuccessfull($user);
+        if($user){
+            $user->update($request->all());
+            return $this->apiController->requestSuccessfull($user);
+        }
+        return $this->apiController->badRequest();
     }
 
     /**
