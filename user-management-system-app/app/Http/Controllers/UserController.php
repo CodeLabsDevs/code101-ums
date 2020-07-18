@@ -64,11 +64,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        if($user){
-            $user->update($request->all());
-            return $this->apiController->requestSuccessfull($user);
-        }
-        return $this->apiController->badRequest();
+        if(!$user) return $this->apiController->badRequest();
+        $user->update($request->all());
+        return $this->apiController->requestSuccesfull($user);
     }
 
     /**
@@ -83,6 +81,5 @@ class UserController extends Controller
         if(!$user) return $this->apiController->badRequest();
         $user->delete();
         return $this->apiController->requestSuccesfull();
-
     }
 }
