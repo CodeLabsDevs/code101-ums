@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for C:\_GIT\code-collabs-dev\p01-user-management-system-v1\user-management-system-app\app\Console</title>
+  <title>Dashboard for C:\_GIT\code-collabs-dev\p01-user-management-system-v1\user-management-system-app\app\Rules</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="../index.html">C:\_GIT\code-collabs-dev\p01-user-management-system-v1\user-management-system-app\app</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Console</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Rules</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -58,7 +58,8 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Kernel.php.html#8">App\Console\Kernel</a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="UpdateUserValidation.php.html#9">App\Rules\UpdateUserValidation</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CreateUserValidation.php.html#9">App\Rules\CreateUserValidation</a></td><td class="text-right">75%</td></tr>
 
        </tbody>
       </table>
@@ -112,7 +113,10 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Kernel.php.html#25"><abbr title="App\Console\Kernel::schedule">schedule</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CreateUserValidation.php.html#43"><abbr title="App\Rules\CreateUserValidation::message">message</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UpdateUserValidation.php.html#17"><abbr title="App\Rules\UpdateUserValidation::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UpdateUserValidation.php.html#29"><abbr title="App\Rules\UpdateUserValidation::rules">rules</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UpdateUserValidation.php.html#42"><abbr title="App\Rules\UpdateUserValidation::authorize">authorize</abbr></a></td><td class="text-right">0%</td></tr>
 
        </tbody>
       </table>
@@ -157,7 +161,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,1,0,0,0], "Class Coverage"))
+      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,1,0,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -175,7 +179,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,0,0,0,1], "Method Coverage"))
+      .datum(getCoverageDistributionData([4,0,0,0,0,0,0,0,0,0,0,3], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -225,7 +229,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[75,2,"<a href=\"Kernel.php.html#8\">App\\Console\\Kernel<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[75,4,"<a href=\"CreateUserValidation.php.html#9\">App\\Rules\\CreateUserValidation<\/a>"],[0,3,"<a href=\"UpdateUserValidation.php.html#9\">App\\Rules\\UpdateUserValidation<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -249,7 +253,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[0,1,"<a href=\"Kernel.php.html#25\">App\\Console\\Kernel::schedule<\/a>"],[100,1,"<a href=\"Kernel.php.html#35\">App\\Console\\Kernel::commands<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"CreateUserValidation.php.html#17\">App\\Rules\\CreateUserValidation::__construct<\/a>"],[100,1,"<a href=\"CreateUserValidation.php.html#29\">App\\Rules\\CreateUserValidation::rules<\/a>"],[0,1,"<a href=\"CreateUserValidation.php.html#43\">App\\Rules\\CreateUserValidation::message<\/a>"],[100,1,"<a href=\"CreateUserValidation.php.html#52\">App\\Rules\\CreateUserValidation::authorize<\/a>"],[0,1,"<a href=\"UpdateUserValidation.php.html#17\">App\\Rules\\UpdateUserValidation::__construct<\/a>"],[0,1,"<a href=\"UpdateUserValidation.php.html#29\">App\\Rules\\UpdateUserValidation::rules<\/a>"],[0,1,"<a href=\"UpdateUserValidation.php.html#42\">App\\Rules\\UpdateUserValidation::authorize<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);

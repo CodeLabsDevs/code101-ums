@@ -10,7 +10,7 @@ class ApiController extends Controller
     public function badRequest($message="bad request", $status_code=IlluminateResponse::HTTP_BAD_REQUEST)
     {
         $response = ['message' => $message, 'status_code' => $status_code];
-        return Response::json($response);
+        return Response::json($response, $status_code);
     }
 
     public function requestSuccesfull($data=null, $message="request succesfull", $status_code=IlluminateResponse::HTTP_OK)
@@ -18,7 +18,7 @@ class ApiController extends Controller
        // $response = isset($data) ? ['data'=> $data, 'message' => $message, 'status_code' => IlluminateResponse::HTTP_OK] : ['message' => $message, 'status_code' => IlluminateResponse::HTTP_OK];
         $response = ['message' => $message, 'status_code' => $status_code];
         $data ? $response['data'] = $data : "";
-        return Response::json($response);
+        return Response::json($response, $status_code);
     }
 
     function getErrorMessages(\Illuminate\Contracts\Validation\Validator $validator){
