@@ -8,6 +8,7 @@ use App\User;
 use App\Http\RestfullResponse\ApiController;
 use Illuminate\Http\Response as IlluminateResponse;
 use App\Rules\CreateUserValidation;
+use App\Rules\UpdateUserValidation;
 
 class UserController extends Controller
 {
@@ -61,10 +62,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserValidation $request, User $user)
     {
-        $user = User::find($id);
-        if(!$user) return $this->apiController->badRequest();
         $user->update($request->all());
         return $this->apiController->requestSuccesfull($user);
     }
@@ -75,10 +74,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
-        if(!$user) return $this->apiController->badRequest();
         $user->delete();
         return $this->apiController->requestSuccesfull();
     }
