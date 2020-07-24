@@ -44,6 +44,12 @@ class UserTest extends TestCase
         $response->assertStatus(400);
     }
     
+    /** @test */
+    public function showUser_WhenIdGiven_ShouldReturnTrue(){
+        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response->assertStatus(200);
+    }
+
     public function getAllUsers_ShouldReturnDataSet(){
         
             $response = $this->json('GET', '/api/users');
