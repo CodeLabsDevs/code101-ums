@@ -14,34 +14,40 @@ class UserTest extends TestCase
      * @return void
      */
 
-    public function registerNewUser_WhenUserObjectGiven_StatusShouldBeOK()
+     /** @test */
+    public function registerNewUser_WhenUserObjectGiven_StatusShouldReturn200()
     {
-        $response = $this->post('/api/user', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
-        $response->assertkOk();
-
+        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response->assertStatus(200);
     }
 
     /** @test */
-    public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBeBadRequest()
+    public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBe400()
     {
         $response = $this->post('/api/user', []);
         $response->assertStatus(400);
     }
     
     
-     /** @test */
-    public function registerNewUser_WhenUserObjectGiven_CreatedShouldReturnTrue()
+    
+    /** @test*/
+    public function retrieveUser_WhenIdGiven_StatusShouldReturn200()
     {
-        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $id = 1;
+        $response = $this->get('/api/user/'.$id);
         $response->assertStatus(200);
-
     }
-
-    /** @test */
-    public function registerNewUser_WhenEmptyUserObjectGiven_CreatedShouldReturnFalse()
+    
+    public function retrieveUser_WhenFalseIdGiven_StatusShouldReturn400()
     {
-        $response = $this->postJson('/api/user', []);
+        $id = 10;
+        $response = $this->get('/api/user/'.$id);
         $response->assertStatus(400);
+    }
+    
+    public function updateUser_WhenObjectGiven_StatusShouldReturn200()
+    {
+        
     }
     
     public function getAllUsers_ShouldReturnDataSet(){
@@ -64,7 +70,3 @@ class UserTest extends TestCase
             );
         }
     }
-
-
-
-
