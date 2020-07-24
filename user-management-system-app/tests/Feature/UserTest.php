@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\User;
 
 class UserTest extends TestCase
 {
@@ -14,63 +15,59 @@ class UserTest extends TestCase
      * @return void
      */
 
-    public function registerNewUser_WhenUserObjectGiven_StatusShouldBeOK()
+    /** @test */
+    public function showAllUsers_StatusShouldReturn200(){
+        $response = $this->get('/api/user');
+        $response->assertStatus(200);
+    }
+     /** @test */
+    public function registerNewUser_WhenUserObjectGiven_StatusShouldReturn200()
     {
-        $response = $this->post('/api/user', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
-        $response->assertkOk();
-
+        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response->assertStatus(200);
     }
 
     /** @test */
-    public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBeBadRequest()
+    public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBe400()
     {
         $response = $this->post('/api/user', []);
         $response->assertStatus(400);
     }
     
-    
-     /** @test */
-    public function registerNewUser_WhenUserObjectGiven_CreatedShouldReturnTrue()
+    /** @test */
+    public function retrieveUser_WhenIdGiven_StatusShouldReturn200()
     {
-        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $id = 1;
+        $response = $this->get('/api/user/'.$id);
         $response->assertStatus(200);
-
     }
 
     /** @test */
-    public function registerNewUser_WhenEmptyUserObjectGiven_CreatedShouldReturnFalse()
+    public function retrieveUser_WhenFalseIdGiven_StatusShouldReturn400()
     {
-        $response = $this->postJson('/api/user', []);
+        $id = -10;
+        $response = $this->get('/api/user/'.$id);
         $response->assertStatus(400);
     }
     
     /** @test */
-    public function showUser_WhenIdGiven_ShouldReturnTrue(){
-        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+    public function updateUser_WhenObjectGiven_StatusShouldReturn200()
+    {
+        $id = 1;
+        $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response = $this->json('PUT', '/api/user/'.$id, ['name' => 'Tom']);
         $response->assertStatus(200);
     }
 
-    public function getAllUsers_ShouldReturnDataSet(){
-        
-            $response = $this->json('GET', '/api/users');
-            $response->assertStatus(200);
+    /** @test */
+    public function deleteUser_WhenIdGiven_StatusShouldReturn200()
+    {
+        $id = 1;
+        $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response = $this->json('DELETE', '/api/user/'.$id);
+        $response->assertStatus(200);
 
-            $response->assertJsonStructure(
-                [
-                    [
-                            'id',
-                            'name',
-                            'email',
-                            'password',
-                            'created_at',
-                            'updated_at',
-                            'deleted_at'
-                    ]
-                ]
-            );
-        }
     }
-
-
-
-
+   
+}
