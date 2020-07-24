@@ -16,7 +16,7 @@ class UserTest extends TestCase
 
     public function registerNewUser_WhenUserObjectGiven_StatusShouldBeOK()
     {
-        $response = $this->post('/create', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
+        $response = $this->post('/api/user', ['name' => 'Ben', 'email' => 'Ben@mail.com', 'password' => 'J1234']);
         $response->assertkOk();
 
     }
@@ -24,25 +24,24 @@ class UserTest extends TestCase
     /** @test */
     public function registerNewUser_WhenEmptyUserObjectGiven_StatusShouldBeBadRequest()
     {
-        $response = $this->post('/create', []);
-        $response->assertStatus(404);
+        $response = $this->post('/api/user', []);
+        $response->assertStatus(400);
     }
     
     
      /** @test */
     public function registerNewUser_WhenUserObjectGiven_CreatedShouldReturnTrue()
     {
-        $response = $this->postJson('/create', ['name' => 'Ben', 'email' => 'Bob@mail.com', 'password' => 'J1234']);
-        $response->assertJson(['created' => 'true']);
+        $response = $this->postJson('/api/user', ['name' => 'Frank', 'email' => 'Frank@mail.com', 'password' => 'J1234']);
+        $response->assertStatus(200);
 
     }
 
     /** @test */
     public function registerNewUser_WhenEmptyUserObjectGiven_CreatedShouldReturnFalse()
     {
-        $this->postJson('/create', []);
-        $response = $this->getJson('/create');
-        $response->assertJson(['created' => 'false']);
+        $response = $this->postJson('/api/user', []);
+        $response->assertStatus(400);
     }
     
     public function getAllUsers_ShouldReturnDataSet(){
