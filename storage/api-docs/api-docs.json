@@ -1,0 +1,33 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User Management System",
+        "description": "This is an api documentation for a user management system.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "test@codelab-ums-api.herokuapp.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create user",
+                "description": "This can only be done by the logged in user.",
+                "operationId": "createUser",
+                "responses": {
+                    "default": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -29,13 +29,26 @@ class UserController extends Controller
         $user = User::all();
         return $this->apiController->requestSuccesfull($user);
     }
-
+     /**
+     * @OA\Post(
+     *     path="/api/user",
+     *     tags={"user"},
+     *     summary="Create user",
+     *     description="This can only be done by the logged in user.",
+     *     operationId="createUser",
+     *     @OA\Response(
+     *         response="default",
+     *         description="successful operation"
+     *     )
+     * )
+     */
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(CreateUserValidation $request)
     {
         $user = User::create($request->toArray());
