@@ -28,7 +28,7 @@ class UserController extends Controller
     /**
      * @OA\Get(
      *     path="/api/user",
-     *     tags={"users"},
+     *     tags={"User"},
      *     summary="List users",
      *     @OA\Response(
      *          response=200,
@@ -51,7 +51,7 @@ class UserController extends Controller
      /**
      * @OA\Post(
      *     path="/api/user",
-     *     tags={"user"},
+     *     tags={"User"},
      *     summary="Create user",
      *     description="This can only be done by the logged in user.",
      *     operationId="createUser",
