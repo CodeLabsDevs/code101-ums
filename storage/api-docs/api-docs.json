@@ -15,6 +15,21 @@
     },
     "paths": {
         "/api/user": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "List users",
+                "operationId": "App\\Http\\Controllers\\UserController::index",
+                "responses": {
+                    "200": {
+                        "description": "List of users"
+                    },
+                    "default": {
+                        "description": "error"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "user"
@@ -25,6 +40,60 @@
                 "responses": {
                     "default": {
                         "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Fetch user",
+                "operationId": "App\\Http\\Controllers\\UserController::show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A user"
+                    },
+                    "default": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "api/user/{id}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete user",
+                "operationId": "App\\Http\\Controllers\\UserController::destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete a user"
+                    },
+                    "default": {
+                        "description": "error"
                     }
                 }
             }

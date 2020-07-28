@@ -26,19 +26,19 @@ class UserController extends Controller
 
 
     /**
-     * @SWG\Get(
-     *     path="/api/users",
+     * @OA\Get(
+     *     path="/api/user",
      *     tags={"users"},
      *     summary="List users",
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response=200,
      *          description="List of users",
-     *          @SWG\Schema(ref="#/definitions/User")
+     *          @OA\Schema(ref="#/definitions/User")
      *      ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="default",
      *          description="error",
-     *          @SWG\Schema(ref="#/definitions/Error")
+     *          @OA\Schema(ref="#/definitions/Error")
      *   )
      * ),
      */
@@ -84,26 +84,27 @@ class UserController extends Controller
 
      
     /**
-     * @SWG\Get(
-     *     path="/users/{id}",
+     * @OA\Get(
+     *     path="/api/user/{id}",
      *     tags={"User"},
      *     summary="Fetch user",
-     *     @SWG\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true,
-     *          type="integer",
-     *          description="UUID",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
      * 		),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response=200,
      *          description="A user",
-     *          @SWG\Schema(ref="#/definitions/User")
+     *          @OA\Schema(ref="#/definitions/User")
      *      ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="default",
      *          description="error",
-     *          @SWG\Schema(ref="#/definitions/Error")
+     *          @OA\Schema(ref="#/definitions/Error")
      *   )
      * ),
  */
@@ -137,26 +138,27 @@ class UserController extends Controller
      */
 
       /**
-     * @SWG\Delete(
-     *     path="/users/{id}",
+     * @OA\Delete(
+     *     path="api/user/{id}",
      *     tags={"User"},
      *     summary="Delete user",
-     *     @SWG\Parameter(
-     *          name="id",
-     *          in="path",
-     *          required=true,
-     *          type="integer",
-     *          description="UUID",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
      * 		),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response=204,
      *          description="Delete a user",
-     *          @SWG\Schema(ref="#/definitions/User")
+     *          @OA\Schema(ref="#/definitions/User")
      *      ),
-     *     @SWG\Response(
+     *     @OA\Response(
      *          response="default",
      *          description="error",
-     *          @SWG\Schema(ref="#/definitions/Error")
+     *          @OA\Schema(ref="#/definitions/Error")
      *   )
      * ),
      */
