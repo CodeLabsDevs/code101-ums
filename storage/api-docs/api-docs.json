@@ -17,7 +17,7 @@
         "/api/user": {
             "get": {
                 "tags": [
-                    "users"
+                    "User"
                 ],
                 "summary": "List users",
                 "operationId": "App\\Http\\Controllers\\UserController::index",
@@ -32,7 +32,7 @@
             },
             "post": {
                 "tags": [
-                    "user"
+                    "User"
                 ],
                 "summary": "Create user",
                 "description": "This can only be done by the logged in user.",
