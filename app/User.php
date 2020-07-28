@@ -7,6 +7,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+ /**
+     * @OAS\Schema(
+     *   schema="User",
+     *   type="object",
+     *   required={"name", "email", "password"},
+     * )
+     * Class User
+     * @package Incase\Models
+     */
 class User extends Authenticatable
 {
     use Notifiable;

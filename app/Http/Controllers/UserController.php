@@ -23,6 +23,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    /**
+     * @SWG\Get(
+     *     path="/api/users",
+     *     tags={"users"},
+     *     summary="List users",
+     *     @SWG\Response(
+     *          response=200,
+     *          description="List of users",
+     *          @SWG\Schema(ref="#/definitions/User")
+     *      ),
+     *     @SWG\Response(
+     *          response="default",
+     *          description="error",
+     *          @SWG\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
+     */
     public function index()
     {
 
@@ -55,12 +74,39 @@ class UserController extends Controller
         return $this->apiController->requestSuccesfull();
     }
 
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     
+    /**
+     * @SWG\Get(
+     *     path="/users/{id}",
+     *     tags={"User"},
+     *     summary="Fetch user",
+     *     @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="UUID",
+     * 		),
+     *     @SWG\Response(
+     *          response=200,
+     *          description="A user",
+     *          @SWG\Schema(ref="#/definitions/User")
+     *      ),
+     *     @SWG\Response(
+     *          response="default",
+     *          description="error",
+     *          @SWG\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
+ */
     public function show(User $user)
     {
         return $this->apiController->requestSuccesfull($user);
@@ -74,6 +120,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    
+   
     public function update(UpdateUserValidation $request, User $user)
     {
         $user->update($request->all());
@@ -85,6 +134,31 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+      /**
+     * @SWG\Delete(
+     *     path="/users/{id}",
+     *     tags={"User"},
+     *     summary="Delete user",
+     *     @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          type="integer",
+     *          description="UUID",
+     * 		),
+     *     @SWG\Response(
+     *          response=204,
+     *          description="Delete a user",
+     *          @SWG\Schema(ref="#/definitions/User")
+     *      ),
+     *     @SWG\Response(
+     *          response="default",
+     *          description="error",
+     *          @SWG\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
      */
     public function destroy(User $user)
     {
