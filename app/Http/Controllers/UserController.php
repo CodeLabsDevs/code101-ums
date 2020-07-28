@@ -23,6 +23,25 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    /**
+     * @OA\Get(
+     *     path="/api/user",
+     *     tags={"users"},
+     *     summary="List users",
+     *     @OA\Response(
+     *          response=200,
+     *          description="List of users",
+     *          @OA\Schema(ref="#/definitions/User")
+     *      ),
+     *     @OA\Response(
+     *          response="default",
+     *          description="error",
+     *          @OA\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
+     */
     public function index()
     {
 
@@ -55,12 +74,40 @@ class UserController extends Controller
         return $this->apiController->requestSuccesfull();
     }
 
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     
+    /**
+     * @OA\Get(
+     *     path="/api/user/{id}",
+     *     tags={"User"},
+     *     summary="Fetch user",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * 		),
+     *     @OA\Response(
+     *          response=200,
+     *          description="A user",
+     *          @OA\Schema(ref="#/definitions/User")
+     *      ),
+     *     @OA\Response(
+     *          response="default",
+     *          description="error",
+     *          @OA\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
+ */
     public function show(User $user)
     {
         return $this->apiController->requestSuccesfull($user);
@@ -74,6 +121,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    
+   
     public function update(UpdateUserValidation $request, User $user)
     {
         $user->update($request->all());
@@ -85,6 +135,32 @@ class UserController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+
+      /**
+     * @OA\Delete(
+     *     path="api/user/{id}",
+     *     tags={"User"},
+     *     summary="Delete user",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     * 		),
+     *     @OA\Response(
+     *          response=204,
+     *          description="Delete a user",
+     *          @OA\Schema(ref="#/definitions/User")
+     *      ),
+     *     @OA\Response(
+     *          response="default",
+     *          description="error",
+     *          @OA\Schema(ref="#/definitions/Error")
+     *   )
+     * ),
      */
     public function destroy(User $user)
     {
