@@ -232,6 +232,6 @@ return [
     |--------------------------------------------------------------------------
      */
     'constants' => [
-        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://codelab-ums-api.herokuapp.com/docs'),
+        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'https://codelab-ums-api.herokuapp.com'),
     ],
 ];
