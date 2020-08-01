@@ -9,6 +9,7 @@ Code101-ums is a user management system that allows you to manage users.
 ## Project structure
 During the backend development phase, I used:
 
+```
 app/
     Controllers/
     UserController.php
@@ -18,6 +19,7 @@ app/
         ValidatorTrait.php
 routes/
     api.php
+```
 ## Project setup + unit tests  + coverage
 
 ### Clone
