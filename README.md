@@ -20,7 +20,7 @@ app/
 routes/
     api.php
 ```
-## Project setup + unit tests  + coverage
+## Project setup
 
 ### Clone
 
