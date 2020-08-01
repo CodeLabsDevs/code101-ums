@@ -14,7 +14,7 @@ Code101-ums is a user management system that allows you to manage users.
 ``` git clone https://github.com/CodeLabsDevs/code101-ums.git ```
 
 2. Update and install all packages
-``` composer install ```
+`` composer install ```
 
 
 ### Environment
@@ -40,4 +40,8 @@ Code101-ums is a user management system that allows you to manage users.
 8. Run this command to run the tests.
 ``` ./vendor/bin/phpunit ```
 
-![image](doc/coverge.PNG)
+9. For generating a code coverage report add `--coverage-html`
+```vendor/bin/phpunit --coverage-html```
+Go to the coverage folder and open the file index.html.
+You should see something like this:
+![image]('https://github.com/CodeLabsDevs/code101-ums/raw/develop/doc/coverage.PNG')
