@@ -6,6 +6,18 @@ Code101-ums is a user management system that allows you to manage users.
 * Laravel
 * xdebug
 
+## Project structure
+During the backend development phase, I used:
+
+app/
+    Controllers/
+    UserController.php
+    RestfullResponse/
+        ApiController.php
+    Validators/
+        ValidatorTrait.php
+routes/
+    api.php
 ## Project setup + unit tests  + coverage
 
 ### Clone
@@ -41,7 +53,10 @@ Code101-ums is a user management system that allows you to manage users.
 ``` ./vendor/bin/phpunit ```
 
 9. For generating a code coverage report add `--coverage-html`
+
+Run the following command:
 ```vendor/bin/phpunit --coverage-html```
+
 Go to the coverage folder and open the file index.html.
 You should see something like this:
 ![image](https://github.com/CodeLabsDevs/code101-ums/raw/develop/doc/coverage.PNG)
