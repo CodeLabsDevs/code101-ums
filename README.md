@@ -28,7 +28,7 @@ routes/
 ``` git clone https://github.com/CodeLabsDevs/code101-ums.git ```
 
 2. Update and install all packages
-`` composer install ```
+``` composer install ```
 
 
 ### Environment
