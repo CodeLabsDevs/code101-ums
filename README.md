@@ -44,4 +44,5 @@ Code101-ums is a user management system that allows you to manage users.
 ```vendor/bin/phpunit --coverage-html```
 Go to the coverage folder and open the file index.html.
 You should see something like this:
-![image]('https://github.com/CodeLabsDevs/code101-ums/raw/develop/doc/coverage.PNG')
+![image](https://github.com/CodeLabsDevs/code101-ums/raw/develop/doc/coverage.PNG)
+
