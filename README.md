@@ -12,11 +12,12 @@ During the backend development phase, I used:
 ```
 app/
     Controllers/
-    UserController.php
+        UserController.php
     RestfullResponse/
         ApiController.php
     Validators/
         ValidatorTrait.php
+    User.php
 routes/
     api.php
 ```
@@ -63,3 +64,5 @@ Go to the coverage folder and open the file index.html.
 You should see something like this:
 ![image](https://github.com/CodeLabsDevs/code101-ums/raw/develop/doc/coverage.PNG)
 
+
+Checkout the live version of the application: https://codelab-ums-api.herokuapp.com/docs
